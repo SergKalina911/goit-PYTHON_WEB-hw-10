@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% block title %}
+            Сайт цитат
+        {% endblock %}
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<header>
+    <div class="header-container">
+        <nav>
+            <a href="{% url 'index' %}" class="{% if request.resolver_match.url_name == 'index' %}active{% endif %}">Головна</a>
+            <a href="{% url 'quote_list' %}" class="{% if request.resolver_match.url_name == 'quote_list' %}active{% endif %}">Цитати</a>
+            <a href="{% url 'add_quote' %}" class="{% if request.resolver_match.url_name == 'add_quote' %}active{% endif %}">Додати цитату</a>
+            <a href="{% url 'add_author' %}" class="{% if request.resolver_match.url_name == 'add_author' %}active{% endif %}">Додати автора</a>
+            <a href="{% url 'add_tag' %}" class="{% if request.resolver_match.url_name == 'add_tag' %}active{% endif %}">Додати тег</a>
+            <a href="{% url 'search_author' %}" class="{% if request.resolver_match.url_name == 'search_author' %}active{% endif %}">Пошук за автором</a>
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit">Вихід</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}" class="{% if request.resolver_match.url_name == 'login' %}active{% endif %}">Вхід</a>
+                <a href="{% url 'register' %}" class="{% if request.resolver_match.url_name == 'register' %}active{% endif %}">Реєстрація</a>
+            {% endif %}
+        </nav>
+        {% if user.is_authenticated %}
+            <div class="user-greeting">
+                👋 Вітаю, {{ user.username }}
+            </div>
+        {% endif %}
+    </div>
+</header>
+<main>
+    {% block content %}
+    {% endblock %}
+</main>
+</body>
+</html>

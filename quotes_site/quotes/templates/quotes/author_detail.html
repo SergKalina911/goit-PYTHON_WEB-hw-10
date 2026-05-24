@@ -1,0 +1,18 @@
+{% extends 'quotes/base.html' %}
+{% block title %}Автор{% endblock %}
+{% block content %}
+<h2>{{ author.fullname }}</h2>
+<p><strong>Біографія:</strong> {{ author.description }}</p>
+<p><strong>Дата народження:</strong> {{ author.born_date }}</p>
+<p><strong>Місце народження:</strong> {{ author.born_location }}</p>
+
+<h3>Цитати автора:</h3>
+<ul>
+    {% for quote in quotes %}
+        <li>"{{ quote.quote }}"</li>
+    {% empty %}
+        <li>Цитат цього автора поки немає.</li>
+    {% endfor %}
+</ul>
+{% endblock %}
+

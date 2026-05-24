@@ -216,3 +216,43 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.mo
+*.swp
+media/
+staticfiles/
+
+# Environment & secrets
+.env
+config.ini
+
+# Docker
+*.pid
+*.seed
+*.bak
+*.tmp
+*.swp
+*.swo
+
+# VSCode / IDE
+.vscode/
+.idea/
+*.iml
+
+# JSON data files (можна приховати, якщо не хочеш їх у репозиторії)
+authors.json
+quotes.json
+
+# Poetry / Pip
+poetry.lock
