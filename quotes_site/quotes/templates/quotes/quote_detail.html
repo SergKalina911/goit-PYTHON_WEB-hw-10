@@ -16,19 +16,3 @@
 </p>
 {% endblock %}
 
-{% comment %} {% extends 'quotes/base.html' %}
-{% block title %}Деталі цитати{% endblock %}
-{% block content %}
-<h2>Цитата</h2>
-<p>"{{ quote.quote }}"</p>
-<p><strong>Автор:</strong> {{ quote.author.fullname }}</p>
-<p><strong>Дата додавання:</strong> {{ quote.created_at }}</p>
-<p><strong>Теги:</strong>
-    {% for tag in quote.tags.all %}
-        <a href="{% url 'search_by_tag' tag.name %}">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
-    {% empty %}
-        немає
-    {% endfor %}
-</p>
-{% endblock %} {% endcomment %}
-

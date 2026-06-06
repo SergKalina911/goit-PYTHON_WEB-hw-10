@@ -25,10 +25,20 @@ class TagForm(forms.ModelForm):
         fields = ["name"]
 
 class RegisterForm(UserCreationForm):
-    """ Форма для реєстрації нового користувача """
+    """ Форма для реєстрації нового користувача з email """
+    email = forms.EmailField(required=True, help_text="Вкажіть вашу електронну пошту")
+
     class Meta:
         model = User
         fields = ["username", "email", "password1", "password2"]
+
+    def save(self, commit=True):
+        """ Зберігає користувача з email у базі """
+        user = super().save(commit=False)
+        user.email = self.cleaned_data["email"]
+        if commit:
+            user.save()
+        return user
 
 class LoginForm(AuthenticationForm):
     """ Форма для входу користувача """

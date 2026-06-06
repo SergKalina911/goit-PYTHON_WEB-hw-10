@@ -7,4 +7,8 @@
     {{ form.as_p }}
     <button type="submit">Увійти</button>
 </form>
+
+<div class="small text-center" style="margin-top:10px;">
+    <a href="{% url 'password_reset' %}"><i>Забули пароль?</i></a>
+</div>
 {% endblock %}
